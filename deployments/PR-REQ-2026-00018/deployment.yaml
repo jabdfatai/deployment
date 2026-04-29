@@ -1,0 +1,14 @@
+request_name: "PR-REQ-2026-00018"
+repo_url: "https://github.com/jabdfatai/deployment.git"
+app: "AI Appointment Schedule"
+packaging:
+  source_repo_url: "https://github.com/jabdfatai/deployment.git"
+  source_ref: "main"
+  container_image: "frappe/AI Appointment Schedule:latest"
+  package_format: "tar.gz"
+support_systems:
+  mariadb: "{'host': 'mariadb', 'port': 3306, 'database': '_11524123c8e3b1c8', 'username': '_11524123c8e3b1c8'}"
+  redis: "{'cache': '', 'queue': ''}"
+hcl_files:
+  - component: "backend"
+    file: "PR-REQ-2026-00018-backend.nomad.hcl"
