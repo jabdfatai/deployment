@@ -1,0 +1,63 @@
+{
+  "request": "PR-REQ-2026-00020",
+  "components": [
+    {
+      "component": "backend",
+      "job_id": "ai-appointment-tenant 12-backend",
+      "job_spec": {
+        "Job": {
+          "ID": "ai-appointment-tenant 12-backend",
+          "Name": "ai-appointment-tenant 12-backend",
+          "Type": "service",
+          "Datacenters": [
+            "dc1"
+          ],
+          "TaskGroups": [
+            {
+              "Name": "backend-group",
+              "Count": 1,
+              "Tasks": [
+                {
+                  "Name": "backend",
+                  "Driver": "docker",
+                  "Config": {
+                    "image": "nginx:alpine",
+                    "ports": [
+                      "http"
+                    ]
+                  },
+                  "Resources": {
+                    "CPU": 300,
+                    "MemoryMB": 256
+                  },
+                  "Services": [
+                    {
+                      "Name": "ai-appointment-backend-tenant 12",
+                      "PortLabel": "http"
+                    }
+                  ]
+                }
+              ],
+              "Networks": [
+                {
+                  "DynamicPorts": [
+                    {
+                      "Label": "http"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "Meta": {
+            "keos_component": "backend"
+          }
+        }
+      },
+      "hcl_text": "job \"ai-appointment-tenant 12-backend\" {\n  datacenters = [\"dc1\"]\n  type = \"service\"\n  meta = {\n    keos_component = \"backend\"\n  }\n  task_groups = [\n    {\n      Name = \"backend-group\"\n      Count = 1\n      Tasks = [\n        {\n          Name = \"backend\"\n          Driver = \"docker\"\n          Config = {\n            image = \"nginx:alpine\"\n            ports = [\"http\"]\n          }\n          Resources = {\n            CPU = 300\n            MemoryMB = 256\n          }\n          Services = [\n            {\n              Name = \"ai-appointment-backend-tenant 12\"\n              PortLabel = \"http\"\n            },\n          ]\n        },\n      ]\n      Networks = [\n        {\n          DynamicPorts = [\n            {\n              Label = \"http\"\n            },\n          ]\n        },\n      ]\n    },\n  ]\n}\n",
+      "file_name": "PR-REQ-2026-00020-backend.nomad.hcl",
+      "file_url": "/private/files/PR-REQ-2026-00020-backend.nomad.hcl",
+      "file_id": "58dc0219f2"
+    }
+  ]
+}
